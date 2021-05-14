@@ -1,4 +1,4 @@
-# pycon-django-workshop
+# PyCon 2021 Workshop Notes
 
 Resources for my Django on Azure workshop at PyCon US 2021
 
@@ -8,10 +8,9 @@ A copy of [the slides](slides.pdf) is available in this repository.
 
 ### Azure Architecture
 
-**Links:**
+#### Links
 
 - [Tutorial: Deploy a Django web app with PostgreSQL in Azure App Service](https://docs.microsoft.com/azure/app-service/tutorial-python-postgresql-app?WT.mc_id=python-00000-anthonyshaw)
-
 
 ### Azure Web Apps
 
@@ -19,7 +18,7 @@ A copy of [the slides](slides.pdf) is available in this repository.
 
 #### App Service Components
 
-- [Web Apps](https://docs.microsoft.com/en-us/azure/app-service/)
+- [Web Apps](https://docs.microsoft.com/en-us/azure/app-service/?WT.mc_id=python-00000-anthonyshaw)
 - [App Service Plans](https://docs.microsoft.com/en-us/azure/app-service/overview-hosting-plans?WT.mc_id=python-00000-anthonyshaw)
 - [Continuous Deployment with App Service](https://tonybaloney.github.io/posts/django-on-azure-beyond-hello-world.html#testing)
 - [Using LocustIO to load test Django](https://tonybaloney.github.io/posts/django-on-azure-beyond-hello-world.html#performance)
@@ -40,17 +39,25 @@ gunicorn --workers 8 --threads 4 --timeout 60 --access-logfile '-' --error-logfi
 
 ### Databases
 
-**Links**
+#### Overview of DBaaS offerings
 
-- [Azure Database for Postgres]
-- [Azure SQL]
-- [Azure Database for MySQL/MariaDB]
-- [Django support for Microsoft SQL Server]
-- [Azure Database for Postgres Tiers]
-- [Postgres Flexible Server Tiers]
-- [Performance optimizations for Postgres on Azure]
-- [Hyperscale (Citus) Server]
-- [Azure Arc enabled Postgres]
+- [Azure Database for PostgreSQL](https://docs.microsoft.com/en-au/azure/postgresql/?WT.mc_id=python-00000-anthonyshaw)
+- [Azure SQL](https://docs.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?WT.mc_id=python-00000-anthonyshaw)
+- [Azure Database for MySQL](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=python-00000-anthonyshaw)
+- [Azure Database for MariaDB](https://docs.microsoft.com/en-us/azure/mariadb/?WT.mc_id=python-00000-anthonyshaw)
+- [Django support for Microsoft SQL Server](https://github.com/microsoft/mssql-django?WT.mc_id=python-00000-anthonyshaw)
+- [Azure Database for Postgres Pricing](https://docs.microsoft.com/en-us/azure/app-service/?WT.mc_id=python-00000-anthonyshaw)
+
+#### Types of Postgres Deployment on Azure
+
+- [Flexible Server Overview](https://docs.microsoft.com/en-au/azure/postgresql/flexible-server/overview?WT.mc_id=python-00000-anthonyshaw)
+- [Single Server Overview](https://docs.microsoft.com/en-us/azure/postgresql/overview?WT.mc_id=python-00000-anthonyshaw)
+- [Hyperscale (Citus) Server](https://docs.microsoft.com/en-au/azure/postgresql/hyperscale-overview?WT.mc_id=python-00000-anthonyshaw)
+- [Azure Arc enabled Postgres](https://docs.microsoft.com/en-us/azure/azure-arc/data/what-is-azure-arc-enabled-postgres-hyperscale?WT.mc_id=python-00000-anthonyshaw)
+
+#### Other Useful Links
+
+- [Performance optimizations for Postgres on Azure](https://www.citusdata.com/blog/2020/05/20/postgres-tips-for-django-and-python/)
 
 ### Content Delivery
 
