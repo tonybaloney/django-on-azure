@@ -76,4 +76,5 @@ gunicorn --workers 8 --threads 4 --timeout 60 --access-logfile '-' --error-logfi
 ### Extra Components
 
 - [Writing an Azure Function for Python](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-python?WT.mc_id=python-00000-anthonyshaw)
+- [SendGrid on the Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/SendGrid.SendGrid)
 
