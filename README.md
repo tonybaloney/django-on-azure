@@ -61,14 +61,19 @@ gunicorn --workers 8 --threads 4 --timeout 60 --access-logfile '-' --error-logfi
 
 ### Content Delivery
 
+- [Static Files and CDN example](https://tonybaloney.github.io/posts/django-on-azure-beyond-hello-world.html#storage)
+- [Azure CDN Pricing](https://azure.microsoft.com/en-au/pricing/details/cdn/)
 
 ### Monitoring and Insights
 
+- [OpenCensus extension for Django](https://pypi.org/project/opencensus-ext-django/)
+- [OpenCensus extension for Azure](https://pypi.org/project/opencensus-ext-azure/)
 
 ### Deployment and DevOps
 
+- [Azure Pipelines Examples](https://tonybaloney.github.io/posts/django-on-azure-beyond-hello-world.html#testing)
 
 ### Extra Components
 
+- [Writing an Azure Function for Python](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-python?WT.mc_id=python-00000-anthonyshaw)
 
-### Conclusion
