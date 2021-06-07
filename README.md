@@ -62,7 +62,7 @@ gunicorn --workers 8 --threads 4 --timeout 60 --access-logfile '-' --error-logfi
 ### Content Delivery
 
 - [Static Files and CDN example](https://tonybaloney.github.io/posts/django-on-azure-beyond-hello-world.html#storage)
-- [Azure CDN Pricing](https://azure.microsoft.com/en-au/pricing/details/cdn/)
+- [Azure CDN Pricing](https://azure.microsoft.com/pricing/details/cdn/?WT.mc_id=python-0000-anthonyshaw)
 
 ### Monitoring and Insights
 
@@ -76,5 +76,5 @@ gunicorn --workers 8 --threads 4 --timeout 60 --access-logfile '-' --error-logfi
 ### Extra Components
 
 - [Writing an Azure Function for Python](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-python?WT.mc_id=python-00000-anthonyshaw)
-- [SendGrid on the Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/SendGrid.SendGrid)
+- [SendGrid on the Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/SendGrid.SendGrid?WT.mc_id=python-0000-anthonyshaw)
 
