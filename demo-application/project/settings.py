@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", '_*&5c@1153xw6=489*2*=&*%=4)8f^m54kb@3ca-cb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["example-django-website.azurewebsites.net", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [os.environ["WEBSITE_HOSTNAME"], '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'opencensus.ext.django.middleware.OpencensusMiddleware',
+    #'opencensus.ext.django.middleware.OpencensusMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -148,10 +148,10 @@ MEDIA_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # any static paths you want to publish
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "demo", "static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "relecloud", "static")]
 
 
-INSTRUMENTATION_KEY = os.getenv("AZURE_INSIGHTS_KEY", None)
+INSTRUMENTATION_KEY = os.getenv("APPINSIGHTS_CONNECTION_STRING", None)
 if INSTRUMENTATION_KEY:
     OPENCENSUS = {
         "TRACE": {
@@ -159,3 +159,17 @@ if INSTRUMENTATION_KEY:
             "EXPORTER": f"""opencensus.ext.azure.trace_exporter.AzureExporter(connection_string='{INSTRUMENTATION_KEY}')""",
         }
     }
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'WARNING',
+#     },
+# }
