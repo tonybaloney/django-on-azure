@@ -10,9 +10,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/demo-application/manage.py",
             "args": [
-                "runserver"
+                "runserver", 
             ],
-            "django": true
+            "cwd": "${workspaceFolder}",
+            "django": true,
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "name": "Migrate",
