@@ -4,7 +4,6 @@ import os
 import sys
 from opentelemetry.instrumentation.django import DjangoInstrumentor
 from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
-from opentelemetry.exporter.richconsole import RichConsoleExporter
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.resources import SERVICE_NAME, Resource
@@ -15,7 +14,6 @@ def main():
     os.environ.setdefault('WEBSITE_HOSTNAME', 'localhost')
     try:
         tracer = TracerProvider(resource=Resource({SERVICE_NAME: "FastAPI"}))
-        tracer.add_span_processor(BatchSpanProcessor(RichConsoleExporter()))
         tracer.add_span_processor(BatchSpanProcessor(
             AzureMonitorTraceExporter.from_connection_string(
                 os.getenv('APPLICATIONINSIGHTS_CONNECTION_STRING')

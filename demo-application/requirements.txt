@@ -1,8 +1,8 @@
+wheel
 django
 django-crispy-forms
 psycopg2-binary==2.8.6
-django-storages[azure]==1.11.1
-opentelemetry-instrumentation-django==0.24b0
-azure-monitor-opentelemetry-exporter
+django-storages[azure]==1.13.1
+opentelemetry-instrumentation-django==0.33b0
+azure-monitor-opentelemetry-exporter==1.0.0b6
 uvicorn
-uwsgi
