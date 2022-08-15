@@ -4,6 +4,7 @@ import os
 import sys
 from opentelemetry.instrumentation.django import DjangoInstrumentor
 from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
+
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.resources import SERVICE_NAME, Resource
