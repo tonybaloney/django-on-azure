@@ -15,7 +15,6 @@ def main():
     os.environ.setdefault('WEBSITE_HOSTNAME', 'localhost')
     try:
         tracer = TracerProvider(resource=Resource({SERVICE_NAME: "FastAPI"}))
-
         tracer.add_span_processor(BatchSpanProcessor(
             AzureMonitorTraceExporter.from_connection_string(
                 os.getenv('APPLICATIONINSIGHTS_CONNECTION_STRING')

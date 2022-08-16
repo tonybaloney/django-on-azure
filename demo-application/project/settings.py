@@ -95,6 +95,7 @@ else:
             "PASSWORD": os.getenv("DATABASE_PASSWORD"),
             "HOST": os.getenv("DATABASE_ADDRESS"),
             "PORT": "5432",
+            "OPTIONS": {"sslmode": "require"},
         },
     }
     
@@ -160,16 +161,16 @@ if INSTRUMENTATION_KEY:
         }
     }
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'root': {
-#         'handlers': ['console'],
-#         'level': 'WARNING',
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
