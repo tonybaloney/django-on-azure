@@ -1,8 +1,14 @@
-# PyCon 2021 Workshop Notes
+# Django on Azure sample repo
 
-Resources for my Django on Azure workshop at PyCon US 2021
+A copy of [the slides from my Django on Azure PyCon US 2021 workshop](slides.pdf) is available in this repository.
 
-A copy of [the slides](slides.pdf) is available in this repository.
+## Deployment
+
+```console
+> azd up --template https://github.com/tonybaloney/django-on-azure
+```
+
+Checkout the [Azure Dev CLI documentation for more instructions on using the CLI](https://docs.microsoft.com/en-us/azure/developer/azure-developer-cli/get-started?WT.mc_id=python-00000-anthonyshaw).
 
 ## Sections
 
