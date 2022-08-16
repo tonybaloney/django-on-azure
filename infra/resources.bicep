@@ -221,6 +221,15 @@ resource postgresdb 'Microsoft.DBforPostgreSQL/flexibleServers@2022-01-20-previe
   dependsOn: [
     privateDnsZoneLink
   ]
+
+  resource djangoDatabase 'databases@2022-01-20-preview' = {
+    name: 'django'
+    properties: {
+      // Azure defaults to UTF-8 encoding, override if required.
+      // charset: 'string' 
+      // collation: 'string'
+    }
+  }
 }
 
 resource storage 'Microsoft.Storage/storageAccounts@2021-09-01' = {
