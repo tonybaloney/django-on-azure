@@ -95,6 +95,7 @@ else:
             "PASSWORD": os.getenv("DATABASE_PASSWORD"),
             "HOST": os.getenv("DATABASE_ADDRESS"),
             "PORT": "5432",
+            "OPTIONS": {"sslmode": "require"},
         },
     }
     

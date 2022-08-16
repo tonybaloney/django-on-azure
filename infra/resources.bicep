@@ -100,7 +100,7 @@ resource web 'Microsoft.Web/sites@2022-03-01' = {
   resource appSettings 'config' = {
     name: 'appsettings'
     properties: {
-      DATABASE_USERNAME: '${postgresdb.properties.administratorLogin}@${postgresdb.name}'
+      DATABASE_USERNAME: postgresdb.properties.administratorLogin
       DATABASE_PASSWORD: databasePassword
       DATABASE_ADDRESS: '${abbrs.dBforPostgreSQLServers}${resourceToken}.postgres.database.azure.com'
       AZURE_STORAGEACCOUNT_KEY: storage.listKeys().keys[0].value
