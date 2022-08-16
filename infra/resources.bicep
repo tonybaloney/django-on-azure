@@ -6,6 +6,7 @@ param tags object
 
 var abbrs = loadJsonContent('abbreviations.json')
 var databaseSubnetName = 'database-subnet'
+var webappSubnetName = 'webapp-subnet'
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
   name: '${abbrs.networkVirtualNetworks}${resourceToken}'
   location: location
@@ -31,10 +32,27 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
           ]
         }
       }
+      {
+        name: webappSubnetName
+        properties: {
+          addressPrefix: '10.0.1.0/24'
+          delegations: [
+            {
+              name: 'subnet-delegation-${resourceToken}-web'
+              properties: {
+                serviceName: 'Microsoft.Web/serverFarms'
+              }
+            }
+          ]
+        }
+      }
     ]
   }
   resource databaseSubnet 'subnets' existing = {
     name: databaseSubnetName
+  }
+  resource webappSubnet 'subnets' existing = {
+    name: webappSubnetName
   }
 }
 
@@ -59,7 +77,7 @@ resource privateDnsZoneLink 'Microsoft.Network/privateDnsZones/virtualNetworkLin
   }
 }
 
-resource web 'Microsoft.Web/sites@2021-03-01' = {
+resource web 'Microsoft.Web/sites@2022-03-01' = {
   name: '${abbrs.webSitesAppService}${resourceToken}'
   location: location
   tags: union(tags, { 'azd-service-name': 'web' })
@@ -117,7 +135,18 @@ resource web 'Microsoft.Web/sites@2021-03-01' = {
       }
     }
   }
+
+  resource webappVnetConfig 'networkConfig' = {
+    name: 'virtualNetwork'
+    properties: {
+      subnetResourceId: virtualNetwork::webappSubnet.id
+    }
+  }
+
+  dependsOn: [virtualNetwork]
 }
+
+
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: '${abbrs.webServerFarms}${resourceToken}'
