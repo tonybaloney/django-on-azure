@@ -1,6 +1,5 @@
 # Django on Azure sample repo
 
-
 A copy of [the slides from my Django on Azure PyCon US 2021 workshop](slides.pdf) is available in this repository.
 
 ## Deployment
