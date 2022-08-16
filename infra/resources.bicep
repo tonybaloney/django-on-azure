@@ -5,6 +5,59 @@ param databasePassword string
 param tags object
 
 var abbrs = loadJsonContent('abbreviations.json')
+var databaseSubnetName = 'database-subnet'
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
+  name: '${abbrs.networkVirtualNetworks}${resourceToken}'
+  location: location
+  tags: tags
+  properties: {
+    addressSpace: {
+      addressPrefixes: [
+        '10.0.0.0/16'
+      ]
+    }
+    subnets: [
+      {
+        name: databaseSubnetName
+        properties: {
+          addressPrefix: '10.0.0.0/24'
+          delegations: [
+            {
+              name: 'subnet-delegation-${resourceToken}'
+              properties: {
+                serviceName: 'Microsoft.DBforPostgreSQL/flexibleServers'
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  resource databaseSubnet 'subnets' existing = {
+    name: databaseSubnetName
+  }
+}
+
+resource privateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
+  name: '${abbrs.dBforPostgreSQLServers}${resourceToken}.private.postgres.database.azure.com'
+  location: 'global'
+  tags: tags
+  dependsOn: [
+    virtualNetwork
+  ]
+}
+
+resource privateDnsZoneLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
+  parent: privateDnsZone
+  name: '${abbrs.dBforPostgreSQLServers}${resourceToken}-link'
+  location: 'global'
+  properties: {
+    registrationEnabled: false
+    virtualNetwork: {
+      id: virtualNetwork.id
+    }
+  }
+}
 
 resource web 'Microsoft.Web/sites@2021-03-01' = {
   name: '${abbrs.webSitesAppService}${resourceToken}'
@@ -103,6 +156,7 @@ module applicationInsightsResources 'applicationinsights.bicep' = {
   }
 }
 
+
 resource postgresdb 'Microsoft.DBforPostgreSQL/flexibleServers@2022-01-20-preview' = {
   location: location
   tags: tags
@@ -124,7 +178,8 @@ resource postgresdb 'Microsoft.DBforPostgreSQL/flexibleServers@2022-01-20-previe
       geoRedundantBackup: 'Disabled'
     }
     network: {
-      // TODO : private networking
+      delegatedSubnetResourceId: virtualNetwork::databaseSubnet.id
+      privateDnsZoneArmResourceId: privateDnsZone.id
     }
     highAvailability: {
       mode: 'Disabled'
@@ -136,6 +191,9 @@ resource postgresdb 'Microsoft.DBforPostgreSQL/flexibleServers@2022-01-20-previe
       startMinute: 0
     }
   }
+  dependsOn: [
+    privateDnsZoneLink
+  ]
 }
 
 resource storage 'Microsoft.Storage/storageAccounts@2021-09-01' = {
