@@ -87,7 +87,7 @@ resource web 'Microsoft.Web/sites@2022-03-01' = {
     siteConfig: {
       alwaysOn: true
       linuxFxVersion: 'PYTHON|3.9'
-      ftpsState: 'FtpsOnly'
+      ftpsState: 'Disabled'
       appCommandLine: 'startup.sh'
     }
     httpsOnly: true
@@ -145,8 +145,6 @@ resource web 'Microsoft.Web/sites@2022-03-01' = {
 
   dependsOn: [virtualNetwork]
 }
-
-
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: '${abbrs.webServerFarms}${resourceToken}'
