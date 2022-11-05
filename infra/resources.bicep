@@ -2,6 +2,8 @@ param location string
 param resourceToken string
 @secure()
 param databasePassword string
+@secure()
+param secretKey string
 param tags object
 
 var abbrs = loadJsonContent('abbreviations.json')
@@ -109,6 +111,7 @@ resource web 'Microsoft.Web/sites@2022-03-01' = {
       AZURE_STATIC_CONTAINER: 'static'
       SCM_DO_BUILD_DURING_DEPLOYMENT: 'true'
       APPLICATIONINSIGHTS_CONNECTION_STRING: applicationInsightsResources.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING
+      SECRET_KEY: secretKey
     }
   }
 

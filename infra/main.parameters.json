@@ -10,6 +10,9 @@
     },
     "databasePassword": {
       "value": "$(secretOrRandomPassword)"
+    },
+    "secretKey": {
+      "value": "$(secretOrRandomPassword)"
     }
   }
 }
