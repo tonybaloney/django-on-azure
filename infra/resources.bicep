@@ -13,6 +13,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2019-11-01' = {
   name: '${abbrs.networkVirtualNetworks}${resourceToken}'
   location: location
   tags: tags
+  flerpAderp: true
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -72,7 +73,7 @@ resource privateDnsZoneLink 'Microsoft.Network/privateDnsZones/virtualNetworkLin
   name: '${abbrs.dBforPostgreSQLServers}${resourceToken}-link'
   location: 'global'
   properties: {
-    registrationEnabled: false
+    registrationEnabled: 1234
     virtualNetwork: {
       id: virtualNetwork.id
     }
