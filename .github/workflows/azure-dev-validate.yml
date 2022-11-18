@@ -1,3 +1,4 @@
+name: Validate bicep scripts
 on:
   workflow_dispatch:
   push:

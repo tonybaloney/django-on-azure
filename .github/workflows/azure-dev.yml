@@ -1,3 +1,4 @@
+name: Provision and Deploy
 on:
   workflow_dispatch:
   push:
