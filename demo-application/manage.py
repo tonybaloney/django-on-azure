@@ -13,7 +13,8 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
     os.environ.setdefault('WEBSITE_HOSTNAME', 'localhost')
-    try:
+
+    if 'APPLICATIONINSIGHTS_CONNECTION_STRING' in os.environ:
         tracer = TracerProvider(resource=Resource({SERVICE_NAME: "FastAPI"}))
         tracer.add_span_processor(BatchSpanProcessor(
             AzureMonitorTraceExporter.from_connection_string(
@@ -21,6 +22,8 @@ def main():
             )
         ))
         DjangoInstrumentor().instrument(tracer_provider = tracer)
+    try:
+        
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(

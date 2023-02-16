@@ -1,7 +1,7 @@
 wheel
-django
-django-crispy-forms
-psycopg2-binary==2.9.5
+django>=4.0.0
+django-crispy-forms>=2.0.0
+psycopg2-binary>=2.9.5
 django-storages[azure]==1.13.2
 opentelemetry-instrumentation-django==0.36b0
 azure-monitor-opentelemetry-exporter==1.0.0b12
