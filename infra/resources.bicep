@@ -296,5 +296,16 @@ resource media 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-0
   }
 }
 
+resource loadtest 'Microsoft.LoadTestService/loadTests@2022-12-01' = {
+  name: 'loadtest-${resourceToken}'
+  location: location
+  tags: tags
+  identity: {
+    type: 'None'
+  }
+  properties: {
+  }
+}
+
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = applicationInsightsResources.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING
 output WEB_URI string = 'https://${web.properties.defaultHostName}'
