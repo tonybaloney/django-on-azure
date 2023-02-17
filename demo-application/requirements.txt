@@ -1,6 +1,7 @@
 wheel
 django>=4.0.0
-django-crispy-forms>=2.0.0
+django-crispy-forms>=2.0.0,<3.0.0
+crispy-bootstrap4==2022.1
 psycopg2-binary>=2.9.5
 django-storages[azure]==1.13.2
 opentelemetry-instrumentation-django==0.36b0
