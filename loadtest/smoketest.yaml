@@ -1,0 +1,6 @@
+version: v0.1
+testId: SmokeTest
+displayName: Smoke Test
+testPlan: http-test.jmx
+description: 'Load test the sample app'
+engineInstances: 1

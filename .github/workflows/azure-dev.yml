@@ -59,3 +59,35 @@ jobs:
           AZURE_ENV_NAME: ${{ secrets.AZURE_ENV_NAME }}
           AZURE_LOCATION: ${{ secrets.AZURE_LOCATION }}
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  loadTest:
+    name: Load Test
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub Actions 
+        uses: actions/checkout@v2
+          
+      - name: Login to Azure
+        uses: azure/login@v1
+        continue-on-error: false
+        with:
+          creds: ${{ secrets.AZURE_LT_CREDENTIALS }}
+
+      - name: 'Azure Load Testing'
+        uses: azure/load-testing@v1
+        with:
+          loadTestConfigFile: 'loadtest/smoketest.yaml'
+          loadTestResource: ${{ env.AZURE_LOAD_TEST_NAME }}
+          resourceGroup: rg-${{ env.AZURE_ENV_NAME }}
+          env: |
+            [
+              {
+              "name": "domain",
+              "value": "${{ env.AZURE_LOAD_TEST_HOST }}"
+              }
+            ]
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: loadTestResults
+          path: ${{ github.workspace }}/loadTest

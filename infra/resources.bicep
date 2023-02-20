@@ -310,3 +310,5 @@ resource loadtest 'Microsoft.LoadTestService/loadTests@2022-12-01' = {
 
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = applicationInsightsResources.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING
 output WEB_URI string = 'https://${web.properties.defaultHostName}'
+output AZURE_LOAD_TEST_NAME string = loadtest.name
+output AZURE_LOAD_TEST_HOST string = web.properties.defaultHostName
