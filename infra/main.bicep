@@ -41,5 +41,6 @@ module resources 'resources.bicep' = {
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = resources.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING
 output AZURE_LOAD_TEST_NAME string = resources.outputs.AZURE_LOAD_TEST_NAME
 output AZURE_LOAD_TEST_HOST string = resources.outputs.AZURE_LOAD_TEST_HOST
+output AZURE_RESOURCE_GROUP_NAME string = resourceGroup.name
 output AZURE_LOCATION string = location
 

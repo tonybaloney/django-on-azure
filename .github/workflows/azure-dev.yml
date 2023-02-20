@@ -73,7 +73,7 @@ jobs:
         with:
           loadTestConfigFile: 'loadtest/smoketest.yaml'
           loadTestResource: ${{ env.AZURE_LOAD_TEST_NAME }}
-          resourceGroup: ${{ secrets.AZURE_ENV_NAME }}-rg
+          resourceGroup: ${{ env.AZURE_RESOURCE_GROUP_NAME }}
           env: |
             [
               {
