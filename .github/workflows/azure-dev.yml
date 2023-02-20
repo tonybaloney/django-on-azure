@@ -61,7 +61,7 @@ jobs:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   loadTest:
     name: Load Test
-    needs: build-and-deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout GitHub Actions 
