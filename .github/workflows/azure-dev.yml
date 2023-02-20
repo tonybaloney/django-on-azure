@@ -60,6 +60,11 @@ jobs:
           AZURE_LOCATION: ${{ secrets.AZURE_LOCATION }}
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Azure authentication (load testing)
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_LT_CREDENTIALS }}
+
       - name: 'Azure Load Testing'
         uses: azure/load-testing@v1
         with:
