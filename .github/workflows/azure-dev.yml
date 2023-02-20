@@ -60,6 +60,9 @@ jobs:
           AZURE_LOCATION: ${{ secrets.AZURE_LOCATION }}
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Export environment variables
+        run: export $(azd env get-values | xargs)
+
       - name: Azure authentication (load testing)
         uses: azure/login@v1
         with:
