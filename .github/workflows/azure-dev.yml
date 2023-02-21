@@ -69,7 +69,7 @@ jobs:
           creds: ${{ secrets.AZURE_LT_CREDENTIALS }}
 
       - name: 'Azure Load Testing'
-        uses: azure/load-testing@v1
+        uses: tonybaloney/load-testing@error_detail
         with:
           loadTestConfigFile: 'loadtest/smoketest.yaml'
           loadTestResource: ${{ env.AZURE_LOAD_TEST_NAME }}
