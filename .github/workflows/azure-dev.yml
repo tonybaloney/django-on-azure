@@ -61,7 +61,10 @@ jobs:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Export environment variables
-        run: azd env get-values | sed 's/="/=/' | sed 's/"$//' >> $GITHUB_ENV
+        run: |
+          azd env get-values | grep AZURE_LOAD_TEST_NAME | sed 's/="/=/' | sed 's/"$//' >> $GITHUB_ENV
+          azd env get-values | grep AZURE_LOAD_TEST_HOST | sed 's/="/=/' | sed 's/"$//' >> $GITHUB_ENV
+          azd env get-values | grep AZURE_RESOURCE_GROUP_NAME | sed 's/="/=/' | sed 's/"$//' >> $GITHUB_ENV
 
       - name: Azure authentication (load testing)
         uses: azure/login@v1
