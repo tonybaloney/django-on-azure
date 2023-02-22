@@ -81,7 +81,7 @@ jobs:
             [
               {
               "name": "domain",
-              "value": ${{ env.AZURE_LOAD_TEST_HOST }}
+              "value": "${{ env.AZURE_LOAD_TEST_HOST }}"
               }
             ]
       
