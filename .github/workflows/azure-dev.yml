@@ -61,7 +61,7 @@ jobs:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Export environment variables
-        run: azd env get-values >> $GITHUB_ENV
+        run: azd env get-values | sed 's/="/=/' | sed 's/"$//' >> $GITHUB_ENV
 
       - name: Azure authentication (load testing)
         uses: azure/login@v1
