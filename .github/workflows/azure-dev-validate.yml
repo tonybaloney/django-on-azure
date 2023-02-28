@@ -14,6 +14,8 @@ env:
  AZURE_RESOURCE_GROUP_NAME: django-test-3-rg
 jobs:
   build:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
