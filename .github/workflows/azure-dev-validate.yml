@@ -12,6 +12,7 @@ on:
 env:
  AZURE_LOAD_TEST_NAME: loadtest-uxfkfalgrdeag
  AZURE_RESOURCE_GROUP_NAME: django-test-3-rg
+ AZURE_LOAD_TEST_HOST: app-uxfkfalgrdeag.azurewebsites.net
 jobs:
   build:
     permissions:
@@ -19,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Azure CLI script
         uses: azure/CLI@v1
