@@ -1,0 +1,30 @@
+name: "Microsoft Security DevOps Analysis"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+  schedule:
+    - cron: '39 16 * * 0'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+        # Run analyzers
+        - name: Run Microsoft Security DevOps Analysis
+          uses: microsoft/security-devops-action@preview
+          id: msdo
+
+        # Upload alerts to the Security tab
+        - name: Upload alerts to Security tab
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: ${{ steps.msdo.outputs.sarifFile }}
