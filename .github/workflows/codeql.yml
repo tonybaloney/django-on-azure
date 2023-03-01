@@ -24,6 +24,7 @@ jobs:
           id: msdo
           with:
             categories: 'IaC'
+            tools: template-analyzer
 
         # Upload alerts to the Security tab
         - name: Upload alerts to Security tab
