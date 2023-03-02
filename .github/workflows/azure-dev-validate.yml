@@ -19,10 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Azure CLI script
+      - name: Build Bicep for linting
         uses: azure/CLI@v1
         with:
-          inlineScript: az bicep build -f infra/main.bicep
+          inlineScript: az bicep build -f infra/main.bicep --stdout
 
       - name: Run Microsoft Security DevOps Analysis
         uses: microsoft/security-devops-action@preview
