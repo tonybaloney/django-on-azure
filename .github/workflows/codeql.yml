@@ -18,13 +18,13 @@ jobs:
       contents: read
       security-events: write
     steps:
+        - uses: actions/checkout@v3
         # Run analyzers
         - name: Run Microsoft Security DevOps Analysis
           uses: microsoft/security-devops-action@preview
           id: msdo
           with:
             tools: templateanalyzer
-            categories: 'IaC'
 
         # Upload alerts to the Security tab
         - name: Upload alerts to Security tab
