@@ -23,7 +23,7 @@ jobs:
           uses: microsoft/security-devops-action@preview
           id: msdo
           with:
-            tools: template-analyzer
+            tools: templateanalyzer
             categories: 'IaC'
 
         # Upload alerts to the Security tab
