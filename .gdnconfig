@@ -1,0 +1,18 @@
+{
+  "tools": [
+    {
+      "tool": {
+        "name": "TemplateAnalyzer",
+        "version": "Latest"
+      },
+      "arguments": {
+        "AnalyzeDirectory": "$(WorkingDirectory)",
+        "AnalyzeTemplate": "",
+        "ParametersFilePath": "",
+        "Verbose": "true",
+        "IncludeNonSecurityRules": "true",
+        "Help": ""
+      }
+    }
+  ]
+}

@@ -9,10 +9,7 @@ on:
     branches:
       - main
       - master
-env:
- AZURE_LOAD_TEST_NAME: loadtest-uxfkfalgrdeag
- AZURE_RESOURCE_GROUP_NAME: django-test-3-rg
- AZURE_LOAD_TEST_HOST: app-uxfkfalgrdeag.azurewebsites.net
+
 jobs:
   build:
     permissions:
@@ -22,24 +19,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Azure CLI script
+      - name: Build Bicep for linting
         uses: azure/CLI@v1
         with:
-          inlineScript: az bicep build -f infra/main.bicep
-      - name: Azure authentication (load testing)
-        uses: azure/login@v1
+          inlineScript: az bicep build -f infra/main.bicep --stdout
+
+      - name: Run Microsoft Security DevOps Analysis
+        uses: microsoft/security-devops-action@preview
+        id: msdo
         with:
-          creds: ${{ secrets.AZURE_LT_CREDENTIALS }}
-      - name: 'Azure Load Testing'
-        uses: tonybaloney/load-testing@write_metrics_to_pr
+          tools: templateanalyzer
+
+      - name: Upload alerts to Security tab
+        uses: github/codeql-action/upload-sarif@v2
         with:
-          loadTestConfigFile: 'loadtest/smoketest.yaml'
-          loadTestResource: ${{ env.AZURE_LOAD_TEST_NAME }}
-          resourceGroup: ${{ env.AZURE_RESOURCE_GROUP_NAME }}
-          env: |
-            [
-              {
-              "name": "domain",
-              "value": "${{ env.AZURE_LOAD_TEST_HOST }}"
-              }
-            ]
+          sarif_file: ${{ steps.msdo.outputs.sarifFile }}
