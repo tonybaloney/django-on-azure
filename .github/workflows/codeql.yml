@@ -23,6 +23,7 @@ jobs:
           uses: microsoft/security-devops-action@preview
           id: msdo
           with:
+            config: .gdnconfig
             categories: 'IaC'
 
         # Upload alerts to the Security tab
