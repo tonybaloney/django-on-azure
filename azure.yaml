@@ -1,7 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
 name: pycon-django-workshop
-
+metadata:
+  template: pycon-django-workshop@0.0.1-beta
 services:
   web:
     project: demo-application/
